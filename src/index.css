@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+    /* color: #fff; optional text color for contrast */
+    /* background: linear-gradient(to right, #232526, #414345); dark grey gradient */
+    /* color: #fff;   */  
+ 
+}
+
+
+:root {
+    --input-bg: #fff;
+    --input-border: #ccc;
+    --input-text: #333;
+    --input-placeholder: #999;
+    --icon-color: #999;
+    --focus-border: #4f46e5;
+    --focus-shadow: rgba(79, 70, 229, 0.2);
+    --bg-color: #f9fafb;
+    --text-color: #333;
+    --glass-bg: rgba(255, 255, 255, 0.25); /* semi-transparent white for light mode */
+    --glass-border: rgba(0, 0, 0, 0.1); 
+    --accent-color: #818cf8;
+    --card-bg: #ffffff;
+  }
+  
+  [data-theme="dark"] {
+    --input-bg: #1f2937;
+    --input-border: #444;
+    --input-text: #f1f1f1;
+    --input-placeholder: #bbb;
+    --icon-color: #bbb;
+    --focus-border: #6366f1;
+    --focus-shadow: rgba(99, 102, 241, 0.3);
+    --bg-color: #111827;
+    --text-color: #fff;
+    --card-bg: #1f2937;
+    --glass-bg: rgba(255, 255, 255, 0.05); /* lighter white for dark mode */
+    --glass-border: rgba(255, 255, 255, 0.2);
+  }
+
+  

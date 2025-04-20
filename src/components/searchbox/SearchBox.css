@@ -1,0 +1,59 @@
+/* SearchBox.css */
+
+.searchbox-container {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .input-searchbox {
+    width: 100%;
+    height: 40px;
+    padding: 0 15px 0 40px;
+    border: 1px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  .input-searchbox::placeholder {
+    color: var(--input-placeholder);
+  }
+  
+  .input-searchbox:focus {
+    border-color: var(--focus-border);
+    box-shadow: 0 0 0 2px var(--focus-shadow);
+  }
+  
+  .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: var(--icon-color);
+    pointer-events: none;
+  }
+  
+  .btn-search {
+    height: 38px;
+    padding: 0 16px;
+    font-size: 14px;
+    border-radius: 8px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid var(--input-border);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-search:hover {
+    background-color: var(--button-hover);
+  } 
