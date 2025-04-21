@@ -3,7 +3,7 @@ import "./WeatherDashboard.css";
 import Weather from "../weather/Weather";
 import WeatherForcast from "../weather-forcast/WeatherForcast";
 import Favorites from "../favorites/Favorites";
-import Header from "../header/header";
+import Header from "../header/Header";
 import useWeatherStore from "../../store/weatherStore";
 import { fetchCityDetails } from "../../utils/api";
 import { toast } from "react-toastify";
