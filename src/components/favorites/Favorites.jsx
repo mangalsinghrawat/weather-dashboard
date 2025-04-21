@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
-  const { favoriteCities,setFavoriteCities } = useWeatherStore();
+  const { favoriteCities, setFavoriteCities } = useWeatherStore();
   const [deleteId, setDeleteId] = useState(null);
 
   console.log({ favoriteCities });

@@ -16,7 +16,7 @@ function App() {
     <>
       <WeatherDashboard />
       <ToastContainer
-        position="bottom-right"
+        position="top-center"
         autoClose={2000}
         hideProgressBar={true}
         newestOnTop={false}

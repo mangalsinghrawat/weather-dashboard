@@ -1,4 +1,3 @@
-  /* ======= Glassmorphism Base ======= */
   .glass-card {
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -53,10 +52,12 @@
     border-radius: 8px;
     border: none;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--input-bg);
     color: var(--text-color);
     cursor: pointer;
     outline: none;
+    border: 1px solid var(--glass-border)
+
   }
   
   /* ======= Main Weather Info ======= */
@@ -67,23 +68,26 @@
     text-align: center;
     flex-wrap: wrap;
     gap: 1rem;
+    
   }
   
   .day-div p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--text-color);
+    font-weight: 500;
   }
   
   .icon-div img {
     width: 100px;
     height: 90px;
     object-fit: contain;
+    scale: 1.5;
   }
   
   .temp-div h2 {
     margin: 0;
-    font-size: 2.6rem;
+    font-size: 2.2rem;
     color: var(--accent-color);
   }
   
@@ -119,12 +123,14 @@
     }
   
     .temp-div h2 {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
   
     .icon-div img {
       width: 65px;
       height: 65px;
+      object-fit: contain;
+      scale: 1.8;
     }
   
     .details-div {
@@ -132,10 +138,6 @@
     }
     .day-div p {
         display: none;
-        /* justify-content: flex-start;
-        margin: 0;
-        text-align: left;
-        color: var(--text-color); */
       }
   }
   
@@ -158,10 +160,7 @@
 
     .day-div p {
         display: none;
-        /* justify-content: flex-start;
-        margin: 0;
-        text-align: left;
-        color: var(--text-color); */
+       
       }
   }
   

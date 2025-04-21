@@ -57,3 +57,19 @@
   .btn-search:hover {
     background-color: var(--button-hover);
   } 
+
+  @media (max-width: 768px) {
+    .btn-search{
+        height: 40px;
+        font-size: 12px;
+        padding: 0 8px;
+
+    }
+    .input-searchbox {
+        width: 100%;
+        height: 40px;
+        font-size: 12px;
+        padding: 0 15px 0 40px;
+    }
+  }
+  

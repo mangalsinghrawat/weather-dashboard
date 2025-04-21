@@ -91,6 +91,18 @@
     cursor: pointer;
   }
   
+  
+  .fade-out {
+    animation: fadeOut 0.3s ease forwards;
+  }
+
+  .weather-center img {
+    width: 40px;
+    height: 40px;
+    scale: 1.6;
+  }
+  
+  
   @keyframes fadeOut {
     from {
       opacity: 1;
@@ -105,17 +117,7 @@
       margin-bottom: 0;
     }
   }
-  
-  .fade-out {
-    animation: fadeOut 0.3s ease forwards;
-  }
 
-  /* Image styling */
-  .weather-center img {
-    width: 40px;
-    height: 40px;
-  }
-  
   /* Scrollbar customization */
   .favorite-container::-webkit-scrollbar {
     width: 8px;
@@ -130,14 +132,11 @@
     background-color: rgba(100, 116, 139, 0.5);
   }
   
-  /* Responsive tweaks */
   @media (max-width: 600px) {
     .favorite-container{
         max-height: 470px;
     }
     .favorite-card {
-      /* flex-direction: column; */
-      /* align-items: flex-start; */
       gap: 10px;
     }
   

@@ -1,12 +1,9 @@
-/* WeatherForecast.css */
-
 .forecast-container {
     padding: 2rem;
     backdrop-filter: blur(10px);
     background: var(--glass-bg);
     border-radius: 1rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    max-width: 1200px;
     margin: auto;
     width: 100%;
   }
@@ -15,7 +12,7 @@
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--text-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem; 
     text-align: left;
   }
   
@@ -40,7 +37,6 @@
     text-align: center;
     color: var(--text-color);
     width: 160px;
-    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
     transition: transform 0.3s ease;
     border: 1px solid var(--glass-border);
     -webkit-backdrop-filter: blur(10px);
@@ -61,6 +57,7 @@
     width: 50px;
     height: 50px;
     margin-bottom: 0.5rem;
+    scale: 1.7;
   }
   
   .forecast-temp {
@@ -76,12 +73,12 @@
   
   @media (max-width: 768px) {
     .forecast-card {
-      min-width: 120px;
+      min-width: 140px;
       padding: 0.75rem;
     }
   
     .forecast-day {
-      font-size: 1rem;
+      font-size: 0.85rem;
     }
   
     .forecast-temp {
@@ -89,7 +86,7 @@
     }
   
     .forecast-condition {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
     }
   
     .forecast-icon {
