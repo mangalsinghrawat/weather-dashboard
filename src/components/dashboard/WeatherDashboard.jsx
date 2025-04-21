@@ -3,9 +3,10 @@ import "./WeatherDashboard.css";
 import Weather from "../weather/Weather";
 import WeatherForcast from "../weather-forcast/WeatherForcast";
 import Favorites from "../favorites/Favorites";
-import Header from "../header/Header";
+import Header from "../header/header";
 import useWeatherStore from "../../store/weatherStore";
 import { fetchCityDetails } from "../../utils/api";
+import { toast } from "react-toastify";
 
 const WeatherDashboard = () => {
   const {
@@ -14,7 +15,6 @@ const WeatherDashboard = () => {
     isLoading,
     fetchWeather,
     fetchForecast,
-    error
   } = useWeatherStore();
 
   useEffect(() => {
@@ -30,15 +30,13 @@ const WeatherDashboard = () => {
           fetchForecast(lat, lon, unit);
         }
       } catch (error) {
-        console.error("Error fetching city details:", error);
+        toast.error("City Not Found.", error)
       }
     })();
   }, [city, unit]);
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) {
-    alert("City Not Found.")
-  }
+
 
   return (
     <div className="dashboard-wrapper">

@@ -5,9 +5,10 @@ import { IoLocationOutline } from "react-icons/io5";
 import { unitsMap, WeatherIconMap } from "../../utils/WeatherDataMaps";
 import useWeatherStore from "../../store/weatherStore";
 import { addFavoriteCity, fetchFavoriteCities, getDay, getFormattedDate, removeFavoriteCity } from "../../utils/helper";
+import { toast } from "react-toastify";
 
 const Weather = () => {
-  const { city, unit, setUnit, weather, forecast, setFavoriteCities } = useWeatherStore();
+  const { city, unit, setUnit, weather, forecast, setFavoriteCities, favoriteCities } = useWeatherStore();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const weatherInfo = {
@@ -36,34 +37,26 @@ const Weather = () => {
     if (weather && isCityIdPresent(weather.id)) {
       setIsFavorite(true);
     }
-  }, [weather])
+    else {
+      setIsFavorite(false);
+    }
+  }, [weather, favoriteCities])
   
   const handleFavoriteClick = () => {
     
     if (!isCityIdPresent(weatherInfo.id)) {
       setIsFavorite(!isFavorite)
       addFavoriteCity(weatherInfo)
+      toast.success("City added to Favorites!");
     }
     else{
       removeFavoriteCity((item) => item.id == weather.id)
       setIsFavorite(false)
+      toast.success("City removed successfully!");
     }
     setFavoriteCities(cities);
     
   }
-
-//   const mock = {
-//     city: "Mumbai",
-//     country: "India",
-//     // day: "Sunday",
-//     // date: "03-02-2025",
-//     humidity: 63,
-//     windSpeed: 5.33,
-//     temperature: 28.33,
-//     condition: "Clear Sky",
-//     icon: "02d",
-//     feelLike: "Clear",
-//   };
 
   return (
     <>

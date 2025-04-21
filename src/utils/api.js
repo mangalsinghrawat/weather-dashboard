@@ -36,9 +36,16 @@ export const fetchCityDetails = async (cityname) => {
   
 
 export const fetchWeatherForcast = async (lat, lon , unit) => {
-  // const { lat, lon } = await fetchCityDetails(city);
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/forecast?units=${unit}&lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
   );
   return await response.json();
 };
+
+export const fetchWeatherByCityId = async (cityId, unit) => {
+  const response = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&units=${unit}&appid=${API_KEY}`
+  )
+
+  return await response.json();
+}

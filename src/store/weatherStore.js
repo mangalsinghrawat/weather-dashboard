@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { fetchWeatherByCity, fetchWeatherForcast } from "../utils/api";
+import { fetchWeatherByCity, fetchWeatherByCityId, fetchWeatherForcast } from "../utils/api";
 import { getFiveDayForecast } from "../utils/helper";
 
 const useWeatherStore = create((set) => ({
@@ -40,7 +40,20 @@ const useWeatherStore = create((set) => ({
         } finally {
           set({ isLoading: false });
         }    
-    }
+    },
+    fetchByCityId: async (cityId, unit) => {
+        set({ isLoading: true, error: null });
+        try {
+            const response = await fetchWeatherByCityId(cityId, unit);
+            set({ weather: response });
+        }
+        catch(err){
+            set({ error: err.message });
+        }
+        finally {
+            set({ isLoading: false });
+        }
+    },
 }));
 
 export default useWeatherStore;

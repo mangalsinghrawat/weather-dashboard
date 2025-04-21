@@ -1,86 +1,46 @@
 import React, { useEffect, useState } from "react";
 import "./Favorites.css";
 import { WeatherIconMap } from "../../utils/WeatherDataMaps";
-import { fetchFavoriteCities } from "../../utils/helper";
+import { fetchFavoriteCities, removeFavoriteCity } from "../../utils/helper";
 import useWeatherStore from "../../store/weatherStore";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 const Favorites = () => {
-    const [favorites, setFavorites] = useState([]);
-    const { favoriteCities } = useWeatherStore();
-    
-    console.log({favoriteCities})
-    
-    useEffect(() => {
-        const data = fetchFavoriteCities();
-        setFavorites(data)
-        
-    },[favoriteCities])
-  //   const favoriteData = [
-  //     {
-  //       id: 1,
-  //       day: 'Sunday',
-  //       date: '03-02-2025',
-  //       temperatureHigh: 32,
-  //       temperatureLow: 24,
-  //       condition: 'Sunny',
-  //       icon: '01d',
-  //       city: 'Canberra',
-  //       country: 'Australia',
-  //     },
-  //     {
-  //       id: 2,
-  //       day: 'Monday',
-  //       date: '03-02-2025',
-  //       temperatureHigh: 20,
-  //       temperatureLow: 12,
-  //       condition: 'Clear',
-  //       icon: '02d',
-  //       city: 'London',
-  //       country: 'UK',
-  //     },
-  //     {
-  //       id: 3,
-  //       day: 'Tuesday',
-  //       date: '03-02-2025',
-  //       temperatureHigh: 17,
-  //       temperatureLow: 10,
-  //       condition: 'Rainy',
-  //       icon: '03d',
-  //       city: 'Bangalore',
-  //       country: 'India',
-  //     },
-  //     {
-  //       id: 4,
-  //       day: 'Tuesday',
-  //       date: '03-02-2025',
-  //       temperatureHigh: 17,
-  //       temperatureLow: 10,
-  //       condition: 'Rainy',
-  //       icon: '03d',
-  //       city: 'Bangalore',
-  //       country: 'India',
-  //     },
-  //     {
-  //       id: 5,
-  //       day: 'Tuesday',
-  //       date: '03-02-2025',
-  //       temperatureHigh: 17,
-  //       temperatureLow: 10,
-  //       condition: 'Rainy',
-  //       icon: '03d',
-  //       city: 'Bangalore',
-  //       country: 'India',
-  //     }
-  //   ];
+  const [favorites, setFavorites] = useState([]);
+  const { favoriteCities,setFavoriteCities } = useWeatherStore();
+  const [deleteId, setDeleteId] = useState(null);
+
+  console.log({ favoriteCities });
+
+  useEffect(() => {
+    const data = fetchFavoriteCities();
+    setFavorites(data);
+  }, [favoriteCities]);
+
+  const handleRemove = (id) => {
+    setDeleteId(id);
+    setTimeout(() => {
+      removeFavoriteCity((city) => city.id === id);
+      setFavorites(fetchFavoriteCities());
+      setFavoriteCities(fetchFavoriteCities());
+      setDeleteId(null);
+      toast.success("City removed successfully!");
+    }, 300);
+  };
 
   return (
     <div className="favorite-container">
       <h3 className="favorite-title">Favorites</h3>
-      {!favorites ? (
-        <>No Data Available</>
+      {favorites.length === 0 ? (
+        <div className="no-data-message">No Data Available</div>
       ) : (
         favorites?.map((item) => (
-          <div className="favorite-card" key={item.id}>
+          <div
+            className={`favorite-card ${
+              deleteId === item.id ? "fade-out" : ""
+            }`}
+            key={item.id}>
             <div className="weather-left">
               <span className="country">{item.country}</span>
               <h4 className="city">{item.city}</h4>
@@ -93,9 +53,11 @@ const Favorites = () => {
               />
             </div>
             <div className="weather-right">
-              <span className="temp-high">{item.temperature}°</span>
-              {/* <span className="temp-low">/{item.temperatureLow}°</span> */}
+              <span className="temp">{item.temperature}°</span>
             </div>
+            <span className="card-remove" onClick={() => handleRemove(item.id)}>
+              <RiDeleteBinLine />
+            </span>
           </div>
         ))
       )}

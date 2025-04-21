@@ -107,7 +107,7 @@
     text-align: center;
     min-width: 100px;
     color: var(--text-color);
-    border: 1px dashed grey;
+    border: 1px solid var(--glass-border);
     border-radius: 10px;
     padding: 5px;
   }
@@ -130,6 +130,13 @@
     .details-div {
       justify-content: center;
     }
+    .day-div p {
+        display: none;
+        /* justify-content: flex-start;
+        margin: 0;
+        text-align: left;
+        color: var(--text-color); */
+      }
   }
   
   @media (max-width: 480px) {
@@ -151,10 +158,10 @@
 
     .day-div p {
         display: none;
-        justify-content: flex-start;
+        /* justify-content: flex-start;
         margin: 0;
         text-align: left;
-        color: var(--text-color);
+        color: var(--text-color); */
       }
   }
   

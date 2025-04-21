@@ -1,13 +1,13 @@
 .dashboard-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   padding: 10px;
   min-height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-color);
 }
 
-/* Main content: two columns */
 .main-dashboard {
   display: flex;
   flex-direction: column;
@@ -15,14 +15,13 @@
   padding: 10px;
 }
 
-/* Left column for Weather + WeatherForcast stacked */
 .left-column {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   gap: 1rem;
 }
 
-/* Cards styling */
 .current-weather,
 .weather-forcast,
 .favorites {
@@ -40,21 +39,22 @@
   border-radius: 10px;
 }
 
-/* Responsive for larger screens */
-@media (min-width: 768px) {
+/* Responsive for tablet-sized screens (768px–1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
   .main-dashboard {
     flex-direction: row;
-    align-items: stretch;
-  } 
+    gap: 1rem;
+  }
 
   .left-column {
-    flex: 2;
+    flex: 3; 
+    max-width: 60%;
   }
 
   .favorites {
     flex: 1;
-    margin-left: 1rem;
-    max-height: calc(100vh - 150px); /* Adjust based on header height */
+    height: auto;
+    max-height: calc(100vh - 150px);
     overflow-y: auto;
   }
 
@@ -64,4 +64,19 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .main-dashboard {
+    flex-direction: row;
+    gap: 2rem;
+  }
 
+  .left-column {
+    flex: 3;
+  }
+
+  .favorites {
+    flex: 1;
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+  }
+}
