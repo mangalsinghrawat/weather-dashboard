@@ -20,7 +20,6 @@
     display: flex;
     gap: 1.5rem;
     overflow-x: auto;
-    /* padding-bottom: 1rem; */
     padding-top: 10px;
   }
 

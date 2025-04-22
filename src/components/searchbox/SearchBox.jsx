@@ -1,15 +1,25 @@
 import React, { useRef } from "react";
 import "./SearchBox.css";
 import useWeatherStore from "../../store/weatherStore";
+import { toast } from "react-toastify";
 
 const SearchBox = () => {
   const { setCity } = useWeatherStore();
   const cityRef = useRef();
 
   const handleSearchClick = () => {
+    const regex = /^[a-zA-Z\s'-]{2,50}$/;
     const value = cityRef.current.value.trim();
-    if (value) {
+    if (regex.test(value)) {
       setCity(value);
+    } else {
+      toast.error("Enter a valid City!");
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearchClick();
     }
   };
 
@@ -21,6 +31,7 @@ const SearchBox = () => {
           type="text"
           ref={cityRef}
           className="input-searchbox"
+          onKeyDown={handleKeyDown}
           placeholder="Search City Name..."
         />
       </div>

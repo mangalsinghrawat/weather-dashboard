@@ -1,21 +1,41 @@
 import React, { useEffect, useState } from "react";
 import "./Favorites.css";
-import { WeatherIconMap } from "../../utils/WeatherDataMaps";
 import { fetchFavoriteCities, removeFavoriteCity } from "../../utils/helper";
 import useWeatherStore from "../../store/weatherStore";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { toast } from "react-toastify";
+import { fetchWeatherByCityId } from "../../utils/api";
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const { favoriteCities, setFavoriteCities } = useWeatherStore();
   const [deleteId, setDeleteId] = useState(null);
 
-  console.log({ favoriteCities });
-
   useEffect(() => {
-    const data = fetchFavoriteCities();
-    setFavorites(data);
+    const fetchLatestFavorites = async () => {
+      const storedFavorites = fetchFavoriteCities();
+
+      const latestWeatherData = await Promise.all(
+        storedFavorites.map(async (item) => {
+          const response = await fetchWeatherByCityId(item.id);
+          return {
+            city: response?.name,
+            id: response?.id,
+            country: response?.sys?.country,
+            temperature: Math.floor(response?.main?.temp),
+            windSpeed: response?.wind?.speed,
+            humidity: response?.main?.humidity,
+            condition: response?.weather?.[0]?.main,
+            icon: response?.weather?.[0]?.icon,
+            feelLike: response?.main?.feels_like,
+          };
+        })
+      );
+
+      setFavorites(latestWeatherData);
+    };
+
+    fetchLatestFavorites();
   }, [favoriteCities]);
 
   const handleRemove = (id) => {
@@ -25,7 +45,7 @@ const Favorites = () => {
       setFavorites(fetchFavoriteCities());
       setFavoriteCities(fetchFavoriteCities());
       setDeleteId(null);
-      toast.success("City removed successfully!");
+      toast.success("City removed from Favorites!");
     }, 300);
   };
 
@@ -53,7 +73,7 @@ const Favorites = () => {
               />
             </div>
             <div className="weather-right">
-              <span className="temp">{item.temperature}°</span>
+              <span className="temp">{item.temperature}C°</span>
             </div>
             <span className="card-remove" onClick={() => handleRemove(item.id)}>
               <RiDeleteBinLine />

@@ -11,10 +11,12 @@ import { toast } from "react-toastify";
 const WeatherDashboard = () => {
   const {
     city,
+    setCity,
     unit,
     isLoading,
     fetchWeather,
     fetchForecast,
+    previousCity,
   } = useWeatherStore();
 
   useEffect(() => {
@@ -22,31 +24,37 @@ const WeatherDashboard = () => {
 
     (async () => {
       try {
-        const data = await fetchCityDetails(city); 
+        const data = await fetchCityDetails(city);
         const { lat, lon } = data;
-  
+
         if (lat && lon) {
           fetchWeather(lat, lon, unit);
           fetchForecast(lat, lon, unit);
         }
       } catch (error) {
-        toast.error("City Not Found.", error)
+        toast.error("City Not Found.", error);
+        setCity(previousCity);
       }
     })();
   }, [city, unit]);
 
   if (isLoading) return <p>Loading...</p>;
 
-
   return (
     <div className="dashboard-wrapper">
       <Header />
       <div className="main-dashboard">
         <div className="left-column">
-          <div className="current-weather"><Weather /></div>
-          <div className="weather-forcast"><WeatherForcast /></div>
+          <div className="current-weather">
+            <Weather />
+          </div>
+          <div className="weather-forcast">
+            <WeatherForcast />
+          </div>
         </div>
-        <div className="favorites"><Favorites /></div>
+        <div className="favorites">
+          <Favorites />
+        </div>
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ function App() {
   const { theme } = useThemeStore();
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme); // Apply theme to document root
+    document.documentElement.setAttribute("data-theme", theme); 
   }, [theme]); 
 
   return (

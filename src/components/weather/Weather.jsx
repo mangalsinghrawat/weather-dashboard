@@ -2,13 +2,29 @@ import React, { useEffect, useState } from "react";
 import "./Weather.css";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import { unitsMap, WeatherIconMap } from "../../utils/WeatherDataMaps";
 import useWeatherStore from "../../store/weatherStore";
-import { addFavoriteCity, fetchFavoriteCities, getDay, getFormattedDate, removeFavoriteCity } from "../../utils/helper";
+import {
+  addFavoriteCity,
+  fetchFavoriteCities,
+  getDay,
+  getFormattedDate,
+  removeFavoriteCity,
+} from "../../utils/helper";
 import { toast } from "react-toastify";
 
+const unitsMap = {
+  "imperial": "F",
+  "metric" : "C"
+}
+
 const Weather = () => {
-  const { city, unit, setUnit, weather, forecast, setFavoriteCities, favoriteCities } = useWeatherStore();
+  const {
+    unit,
+    setUnit,
+    weather,
+    setFavoriteCities,
+    favoriteCities,
+  } = useWeatherStore();
   const [isFavorite, setIsFavorite] = useState(false);
 
   const weatherInfo = {
@@ -24,39 +40,32 @@ const Weather = () => {
     day: getDay,
     date: getFormattedDate(),
   };
-  console.log({ weather });
-  console.log({ city });
-  console.log({ forecast });
+
   const cities = fetchFavoriteCities();
-  console.log({cities})
 
   function isCityIdPresent(id) {
-    return cities.some(city => city.id === id);
+    return cities.some((city) => city.id === id);
   }
   useEffect(() => {
     if (weather && isCityIdPresent(weather.id)) {
       setIsFavorite(true);
-    }
-    else {
+    } else {
       setIsFavorite(false);
     }
-  }, [weather, favoriteCities])
-  
+  }, [weather, favoriteCities]);
+
   const handleFavoriteClick = () => {
-    
     if (!isCityIdPresent(weatherInfo.id)) {
-      setIsFavorite(!isFavorite)
-      addFavoriteCity(weatherInfo)
+      setIsFavorite(!isFavorite);
+      addFavoriteCity(weatherInfo);
       toast.success("City added to Favorites!");
-    }
-    else{
-      removeFavoriteCity((item) => item.id == weather.id)
-      setIsFavorite(false)
-      toast.success("City removed successfully!");
+    } else {
+      removeFavoriteCity((item) => item.id == weather.id);
+      setIsFavorite(false);
+      toast.success("City removed from Favorites!");
     }
     setFavoriteCities(cities);
-    
-  }
+  };
 
   return (
     <>
@@ -85,7 +94,10 @@ const Weather = () => {
               <p>{weatherInfo.date}</p>
             </div>
             <div className="icon-div">
-              <img src={`https://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png`} alt="weather-icon" />
+              <img
+                src={`https://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png`}
+                alt="weather-icon"
+              />
             </div>
             <div className="temp-div">
               <h2>

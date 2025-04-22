@@ -3,11 +3,7 @@
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
-    box-sizing: border-box;
-    /* color: #fff; optional text color for contrast */
-    /* background: linear-gradient(to right, #232526, #414345); dark grey gradient */
-    /* color: #fff;   */  
- 
+    box-sizing: border-box; 
 }
 
 
@@ -21,7 +17,7 @@
     --focus-shadow: rgba(79, 70, 229, 0.2);
     --bg-color: #f9fafb;
     --text-color: #333;
-    --glass-bg: rgba(255, 255, 255, 0.25); /* semi-transparent white for light mode */
+    --glass-bg: rgba(255, 255, 255, 0.25);
     --glass-border: rgba(0, 0, 0, 0.1); 
     --accent-color: #818cf8;
     --card-bg: #ffffff;
@@ -38,7 +34,7 @@
     --bg-color: #111827;
     --text-color: #fff;
     --card-bg: #1f2937;
-    --glass-bg: rgba(255, 255, 255, 0.05); /* lighter white for dark mode */
+    --glass-bg: rgba(255, 255, 255, 0.05); 
     --glass-border: rgba(255, 255, 255, 0.2);
   }
 
